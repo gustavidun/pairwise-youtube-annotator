@@ -1,6 +1,8 @@
 # Pairwise YouTube Annotator
 
-A lightweight web app for pairwise video labeling and comparison. Videos pairs are generated randomly drawing IDs from the `video_ids.json` file.
+A lightweight web app for pairwise video labeling and comparison. Videos pairs are generated randomly drawing IDs from the `video_ids.json` file. Results are saved to an sqlite database.
+
+![Screenshot](data/example.png)
 
 ## Quick Start
 
