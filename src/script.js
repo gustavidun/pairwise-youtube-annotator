@@ -1,7 +1,7 @@
 const accessCode = sessionStorage.getItem("access_code");
+const sessionId = sessionStorage.getItem("session_id");
 
-// Guard: If no valid code was entered, redirect back to login immediately
-if (!accessCode) {
+if (!accessCode || !sessionId) {
     window.location.replace("index.html");
 }
 
@@ -62,6 +62,7 @@ async function chooseVideo(choice) {
                     video_b: currentPair.video_b,
                     winner: winner,
                     question: currentPair.question,
+                    session_id: sessionId
                 }),
             });
         } catch (error) {

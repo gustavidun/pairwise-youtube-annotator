@@ -9,3 +9,8 @@ __pycache__/
 .env
 .venv/
 venv/
+
+# Data & Database
+data/annotations.db
+data/annotations.db-shm
+data/annotations.db-wal

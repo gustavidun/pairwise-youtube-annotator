@@ -14,8 +14,10 @@
                 },
             });
             const data = await response.json();
+            const session_id = await fetch("/get_session_id").then(res => res.json());
             if (data.valid === true || data.valid === "True") {
                 sessionStorage.setItem("access_code", code);
+                sessionStorage.setItem("session_id", session_id.session_id);
                 window.location.href = "pairs.html";
             } else {
                 alert("Invalid code. Please try again.");
@@ -32,8 +34,8 @@
             You will be asked the question "which video is more right leaning?" or "which video is more left leaning?"
         </p>
         <p>
-            You do not have to watch the video if you feel confident in your answer judging solely by the title and
-            thumbnail.
+            You do not have to watch the video if you feel confident in your answer judging solely by the title,
+            channel, and thumbnail.
             Don't spend too much time per pair. If you are unsure, go with your best guess.
         </p>
         <p>
