@@ -7,15 +7,18 @@
         async function submitCode() {
             const codeInput = document.getElementById("code-input");
             const code = codeInput.value;
-            const response = await fetch("/validate_code?code=" + code, {
+            const response = await fetch("/validate_code?code=" + encodeURIComponent(code), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
             });
             const data = await response.json();
-            if (data.valid) {
+            if (data.valid === true || data.valid === "True") {
+                sessionStorage.setItem("access_code", code);
                 window.location.href = "pairs.html";
+            } else {
+                alert("Invalid code. Please try again.");
             }
         }
     </script>

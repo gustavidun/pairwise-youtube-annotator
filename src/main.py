@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
@@ -39,11 +40,23 @@ def fetch_pair():
     }
 
 @app.post("/validate_code")
-def validate_code(code : str):
+def validate_code(code: str):
     if code == os.getenv("CODE"):
-        return {"valid": "True"}
-    else:
-        return {"valid": "False"}
+        return {"valid": True}
+    return {"valid": False}
+
+class Submission(BaseModel):
+    code: str
+    video_a: str
+    video_b: str
+    winner: str
+    question: str
+
+@app.post("/submit")
+def submit(data: Submission):
+    if data.code != os.getenv("CODE"):
+        raise HTTPException(status_code=401, detail="Invalid access code")
+    return {"status": "ok"}
 
 app.mount("/", StaticFiles(directory=BASE_DIR / "src", html=True), name="static")
 
