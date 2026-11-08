@@ -6,7 +6,7 @@ if (!accessCode || !sessionId) {
 }
 
 let progress = -1;
-const total = 50;
+const total = 100;
 let currentPair = null;
 
 function updateProgress() {
