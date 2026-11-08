@@ -52,6 +52,13 @@ button {
     font-weight: 700;
 }
 
+button.unavailable {
+    margin-top: 3rem;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    background: #ff8b8b;
+}
+
 button:hover {
     cursor: pointer;
     background: black;

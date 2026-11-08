@@ -14,7 +14,8 @@ function updateProgress() {
     const progressBar = document.querySelector(".progress-bar div");
     progress++;
     console.log(progress);
-    if (progressBar) progressBar.style.width = `${(progress / total) * 100}%`;
+    const pct = (progress / total) * 100
+    if (progressBar) progressBar.style.width = `${Math.min((progress / total) * 100, 100)}%`;
     if (progressLabel) progressLabel.textContent = `${progress} / ${total}`;
 }
 
