@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <p>Answer the question</p>
+    <h1>Which video is more right leaning?</h1>
+    <div class="pair">
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/gHwUSVStVK4?si=FHZl3Q4VbLQRtyrt"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <button onclick="loadPair()">Video A</button>
+        </div>
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/gHwUSVStVK4?si=FHZl3Q4VbLQRtyrt"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <button onclick="loadPair()">Video B</button>
+        </div>
+        <span class="progress-snippet">0/50</span>
+        <div class="progress-bar">
+            <div></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

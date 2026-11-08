@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        async function submitCode() {
+            const codeInput = document.getElementById("code-input");
+            const code = codeInput.value;
+            const response = await fetch("/validate_code?code=" + code, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const data = await response.json();
+            if (data.valid) {
+                window.location.href = "pairs.html";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="welcome">
+        <h1>YouTube Pairwise Video Labeling</h1>
+        <p>
+            In this task you will be presented with pairs of YouTube videos.
+            You will be asked the question "which video is more right leaning?" or "which video is more left leaning?"
+        </p>
+        <p>
+            You do not have to watch the video if you feel confident in your answer judging solely by the title and
+            thumbnail.
+            Don't spend too much time per pair. If you are unsure, go with your best guess.
+        </p>
+        <p>
+            Enter the code to begin.
+        </p>
+        <input type="text" id="code-input" placeholder="Enter code">
+        <button id="submit-button" onclick="submitCode()">Submit</button>
+    </div>
+</body>
+
+</html>

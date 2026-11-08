@@ -1,0 +1,30 @@
+# Pairwise YouTube Annotator
+
+A lightweight web app for pairwise video labeling and comparison.
+
+## Quick Start
+
+### 1. Prerequisites
+Ensure you have [uv](https://docs.astral.sh/uv/) installed.
+
+### 2. Configuration
+Create a `.env` file in the root directory with your access code:
+```env
+CODE="your_access_code"
+```
+
+Install dependencies:
+```bash
+uv sync
+```
+
+### 3. Run Locally
+Start the FastAPI server:
+```bash
+uv run fastapi dev src/main.py
+```
+Open **[http://localhost:8000](http://localhost:8000)** in your browser.
+
+---
+
+

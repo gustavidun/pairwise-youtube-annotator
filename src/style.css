@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome {
+    width: 60rem;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    align-self: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black;
+}
+
+.pair {
+    width: 80rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-self: center;
+
+}
+
+button {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    align-self: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black;
+    font-weight: 700;
+}
+
+button:hover {
+    cursor: pointer;
+    background: black;
+    color: white;
+}
+
+iframe {
+    margin: 1rem;
+}
+
+.progress-bar {
+    border: solid black;
+    width: 70%;
+    margin-top: 1rem;
+    height: 2rem;
+    background-color: #e0e0e0;
+    display: block;
+    grid-column: 1 / span 2;
+    justify-self: center;
+}
+
+.progress-bar div {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+}
+
+.progress-snippet {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    justify-self: center;
+    grid-column: 1 / span 2;
+}
