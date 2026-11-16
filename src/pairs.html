@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css?v=2">
+    <script src="script.js?v=2" defer></script>
 </head>
 
 <body>
@@ -16,6 +16,11 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <button onclick="chooseVideo('A')">Video A</button>
+            <div class="metadata">
+                <span id="video-a-title"></span>
+                <span id="video-a-description"></span>
+                <span id="video-a-tags"></span>
+            </div>
         </div>
         <div>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -23,6 +28,11 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <button onclick="chooseVideo('B')">Video B</button>
+            <div class="metadata">
+                <span id="video-b-title"></span>
+                <span id="video-b-description"></span>
+                <span id="video-b-tags"></span>
+            </div>
         </div>
         <span class="progress-snippet">0 / 100</span>
         <div class="progress-bar">

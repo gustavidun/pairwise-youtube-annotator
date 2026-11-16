@@ -35,9 +35,31 @@ input {
     width: 80rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
     justify-self: center;
 
+}
+
+.metadata {
+    width: 100%;
+    overflow-wrap: break-word;
+}
+
+.metadata span {
+    margin-top: 1rem;
+    display: block;
+    font-size: 0.9rem;
+}
+
+#video-a-title,
+#video-b-title {
+    font-weight: 700;
+}
+
+#video-a-tags,
+#video-b-tags {
+    color: #666;
+    font-style: italic;
+    font-size: 0.8rem;
 }
 
 button {

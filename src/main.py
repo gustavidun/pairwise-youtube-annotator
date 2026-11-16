@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 import os
 import uuid
 import sqlite3
+import pandas as pd
 
 BASE_DIR = Path(__file__).parents[1]
 load_dotenv(BASE_DIR / ".env")
@@ -41,17 +42,26 @@ app.add_middleware(
 QUESTION = "Which video is more {X} leaning?"
 CHOICES = ["left", "right"]
 
-with open(BASE_DIR / "data/video_ids.json", "r") as f:
-    video_ids = json.load(f)
+video_df = pd.read_csv(BASE_DIR / "data/video_ids.csv", index_col=0).fillna("")
+video_ids = video_df.index.to_list()
 
 @app.get("/fetch_pair")
 def fetch_pair():
     video_a = random.choice(video_ids)
     video_b = random.choice([vid for vid in video_ids if vid != video_a])
+    metadata_a = video_df.loc[video_a]
+    metadata_b = video_df.loc[video_b]
+
     question = QUESTION.format(X=random.choice(CHOICES))
     return {
         "video_a": video_a,
+        "video_a_title": str(metadata_a["title"]),
+        "video_a_description": str(metadata_a["description"]),
+        "video_a_tags": str(metadata_a["tags"]),
         "video_b": video_b,
+        "video_b_title": str(metadata_b["title"]),
+        "video_b_description": str(metadata_b["description"]),
+        "video_b_tags": str(metadata_b["tags"]),
         "question": question
     }
 
