@@ -55,6 +55,23 @@ input {
     font-weight: 700;
 }
 
+#video-a-channel,
+#video-b-channel {
+    font-size: 0.95rem;
+}
+
+#video-a-channel a,
+#video-b-channel a {
+    color: #065fd4;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#video-a-channel a:hover,
+#video-b-channel a:hover {
+    text-decoration: underline;
+}
+
 #video-a-tags,
 #video-b-tags {
     color: #666;

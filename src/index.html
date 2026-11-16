@@ -4,30 +4,64 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <script>
-        async function submitCode() {
+        async function submitAccessCode() {
             const codeInput = document.getElementById("code-input");
             const code = codeInput.value;
-            const response = await fetch("/validate_code?code=" + encodeURIComponent(code), {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            const data = await response.json();
-            const session_id = await fetch("/get_session_id").then(res => res.json());
-            if (data.valid === true || data.valid === "True") {
-                sessionStorage.setItem("access_code", code);
-                sessionStorage.setItem("session_id", session_id.session_id);
-                window.location.href = "pairs.html";
-            } else {
-                alert("Invalid code. Please try again.");
+            try {
+                const response = await fetch("/validate_code?code=" + encodeURIComponent(code), {
+                    method: "POST",
+                });
+                const data = await response.json();
+                if (data.valid === true) {
+                    sessionStorage.setItem("access_code", code);
+                    document.getElementById("auth-section").style.display = "none";
+                    document.getElementById("instructions-section").style.display = "grid";
+                    const coderInput = document.getElementById("coder-id-input");
+                    if (coderInput) coderInput.focus();
+                } else {
+                    alert("Invalid access code. Please try again.");
+                }
+            } catch (err) {
+                console.error("Validation error:", err);
+                alert("Error connecting to server. Please try again.");
             }
         }
+
+        async function submitCoderId() {
+            const coderInput = document.getElementById("coder-id-input");
+            const coderId = coderInput.value.trim();
+            if (!coderId) {
+                alert("Please enter a Coder ID to begin.");
+                return;
+            }
+            try {
+                const sessionRes = await fetch("/get_session_id");
+                const sessionData = await sessionRes.json();
+                sessionStorage.setItem("coder_id", coderId);
+                sessionStorage.setItem("session_id", sessionData.session_id);
+                window.location.href = "pairs.html";
+            } catch (err) {
+                console.error("Failed to start session:", err);
+                alert("Failed to connect to server. Please try again.");
+            }
+        }
+
     </script>
 </head>
 
 <body>
-    <div class="welcome">
+    <!-- Step 1: Access code gate (hidden after valid code) -->
+    <div id="auth-section" class="welcome">
+        <h1>YouTube Pairwise Video Labeling</h1>
+        <p>
+            Enter the access code to begin.
+        </p>
+        <input type="password" id="code-input" placeholder="Enter access code" onkeydown="if(event.key==='Enter') submitAccessCode()">
+        <button id="auth-button" onclick="submitAccessCode()">Submit</button>
+    </div>
+
+    <!-- Step 2: Instructions and Coder ID (revealed only after valid code) -->
+    <div id="instructions-section" class="welcome" style="display: none;">
         <h1>YouTube Pairwise Video Labeling</h1>
         <p>
             In this task you will be presented with pairs of YouTube videos.
@@ -37,7 +71,7 @@
         </p>
         <p>
             Keep the context in mind when making your assessment. For instance, news media showing clips of
-            partisan politicians is not necessarily partisan in itself.
+            partisan politicians is not necessarily partisan in itself (although it can be).
         </p>
         <p>
             You do not have to watch the video if you feel confident in your answer judging solely by the title,
@@ -49,10 +83,10 @@
             click the "video is unavailable" button.
         </p>
         <p>
-            Enter the code to begin.
+            Enter your Coder ID to begin.
         </p>
-        <input type="text" id="code-input" placeholder="Enter code">
-        <button id="submit-button" onclick="submitCode()">Submit</button>
+        <input type="text" id="coder-id-input" placeholder="Enter Coder ID" onkeydown="if(event.key==='Enter') submitCoderId()">
+        <button id="submit-button" onclick="submitCoderId()">Start</button>
     </div>
 </body>
 

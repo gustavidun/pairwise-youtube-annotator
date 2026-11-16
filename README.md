@@ -9,13 +9,7 @@ A lightweight web app for pairwise video labeling and comparison. Videos pairs a
 ### 1. Prerequisites
 Ensure you have [uv](https://docs.astral.sh/uv/) installed.
 
-### 2. Configuration
-Create a `.env` file in the root directory with your access code:
-```env
-CODE="your_access_code"
-```
-
-Install dependencies:
+### 2. Install dependencies
 ```bash
 uv sync
 ```
